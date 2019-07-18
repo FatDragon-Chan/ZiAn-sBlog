@@ -2,7 +2,7 @@
   <div class="m-footer-wrap">
     <div class="m-footer-view">
       <p>本站已经在运行啦~~~</p>
-      <p>@ChenZiAn ---- 一个自学者向世界问好</p>
+      <p>@ChenZiAn ---- 前端小白成长之路</p>
       <p>
         本站点采用
         <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh">
@@ -30,6 +30,7 @@ export default {}
   position relative
   background-color $color-main
   .m-footer-view
+    font-size 14px
     min-width 320px
     max-width 1000px
     height 100%

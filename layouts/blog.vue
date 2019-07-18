@@ -12,6 +12,14 @@ import mHeader from '~/components/Header.vue'
 import mFooter from '~/components/Footer.vue'
 
 export default {
+  head: {
+    titleTemplate: '%s - 记录成长,分享过程',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: 'Meta description' }
+    ]
+  },
   components: {
     mHeader,
     mFooter
@@ -86,8 +94,7 @@ html {
   align-items center
 
 .content-view
-  max-width 1000px
-  min-width 320px
+  width 1000px
   padding 0 10px
   margin 0 auto
 </style>

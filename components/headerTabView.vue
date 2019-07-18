@@ -41,6 +41,7 @@ export default {
   cursor pointer
   animation show .5s
   .header-navbar-btn
+    font-size 14px
     color $color-main
     margin-right 8px
     padding 4px 10px

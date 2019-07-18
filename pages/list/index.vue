@@ -1,18 +1,22 @@
 <template>
-  <div id="home">
-    <template v-for="(item, index) in articleList">
-      <article-card :key="index" :article="item" @articleClick="goToArticle" />
-    </template>
+  <div class="list-wrap">
+    <div class="article-list">
+      <template v-for="(item, index) in articleList">
+        <article-list-card :key="index" class="article" :article="item" />
+      </template>
+    </div>
+    <div class="pagination">
+      <el-pagination background layout="prev, pager, next" :total="10" />
+    </div>
   </div>
 </template>
 
 <script>
-import articleCard from '~/components/ArticleCard.vue'
+import articleListCard from '~/components/ArticleListCard.vue'
 export default {
-  name: 'Home',
   layout: 'blog',
   components: {
-    articleCard
+    articleListCard
   },
   data() {
     return {
@@ -43,24 +47,22 @@ export default {
         }
       ]
     }
-  },
-  methods: {
-    goToArticle(articleId) {
-      console.log(articleId)
-      this.$router.push({
-        name: 'article',
-        query: {
-          id: articleId
-        }
-      })
-    }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-#home
-  position: relative;
-  padding: 30px 10px;
-  min-height: 100px;
+.list-wrap
+  padding 30px 10px
+  .article-list
+    padding 10px 30px
+    .article
+      margin-bottom 20px
+      &:last-child
+        margin-bottom 0px
+  .pagination
+    display flex
+    justify-content center
+    align-items center
+    padding 10px 0
 </style>
