@@ -1,16 +1,14 @@
 <template>
   <div class="m-footer-wrap">
     <div class="m-footer-view">
-      <p>本站已经在运行啦~~~</p>
-      <p>@ChenZiAn ---- 前端小白成长之路</p>
       <p>
-        本站点采用
-        <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh">
-          知识共享 署名-非商业性使用-禁止演绎 4.0 国际 许可协议
+        HomeBy
+        <a target="_blank" href="https://github.com/ChenZiAn1995">
+          @ChenZiAn
         </a>
       </p>
       <p>
-        本站由 @ChenZiAn 创建 - © 2019.
+        © 2019
         <a class="beian-jump" href="http://www.beian.miit.gov.cn">
           粤ICP备19029744号
         </a>
@@ -39,12 +37,18 @@ export default {}
     display flex
     flex-direction column
     justify-content center
+    align-items center
     color $color-grey
     p
       margin: 2px 0
+      padding 4px
       user-select none
     .beian-jump
       text-decoration none
       color $color-grey
       cursor default
+a:visited
+  color $color-grey
+  &:hover
+    color gold
 </style>

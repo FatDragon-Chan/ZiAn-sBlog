@@ -7,7 +7,10 @@
     </div>
     <div class="article-info">
       发表于 2019年06月27日 •
-      <span class="article-category">{{ article.categorieName }}</span> •
+      <span class="article-category" @click="toList(2, article.categorieId)">
+        {{ article.categorieName }}
+      </span>
+      •
       <span class="article-watches">{{ article.watches }}</span>
       人围观
     </div>
@@ -19,7 +22,7 @@
         v-for="(item, index) in article.tags"
         :key="index"
         class="article-tag"
-        @click="toList(item.tagId)"
+        @click="toList(3, item.tagId)"
       >
         <i class="iconfont icon-icon_tag" />
         {{ item.name }}
@@ -39,6 +42,14 @@ export default {
   },
   data() {
     return {}
+  },
+  methods: {
+    toList(status, id) {
+      this.$router.push(`/search/${status}/${id}`)
+    },
+    goToArticle(articleId) {
+      this.$router.push(`/article/${articleId}`)
+    }
   }
 }
 </script>

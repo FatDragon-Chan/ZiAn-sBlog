@@ -26,7 +26,7 @@ export default {
           articleDesc: '我是第一篇文章的副标题',
           categorieId: 11,
           categorieName: '文档类别',
-          creationTime: '1561619970000',
+          createdTime: '1561619970000',
           watches: 13
         },
         {
@@ -38,7 +38,7 @@ export default {
           articleDesc: '我是第二篇文章的副标题',
           categorieId: 12,
           categorieName: '分类名称',
-          creationTime: '1561619970000',
+          createdTime: '1561619970000',
           watches: 5412
         }
       ]

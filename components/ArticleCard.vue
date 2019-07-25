@@ -13,7 +13,10 @@
     <div class="article-content">
       <div class="article-info">
         发表于 2019年06月27日 •
-        <span class="article-category">{{ article.categorieName }}</span> •
+        <span class="article-category" @click="toList(2, article.categorieId)">
+          {{ article.categorieName }}
+        </span>
+        •
         <span class="article-watches">{{ article.watches }}</span>
         人围观
       </div>
@@ -25,7 +28,7 @@
           v-for="(item, index) in article.tags"
           :key="index"
           class="article-tag"
-          @click="toList(item.tagId)"
+          @click="toList(3, item.tagId)"
         >
           <i class="iconfont icon-icon_tag" />
           {{ item.name }}
@@ -52,15 +55,15 @@ export default {
     return {}
   },
   created() {
-    const timeasd = dayjs(this.article.creationTime).format('YYYY-MM-DD')
+    const timeasd = dayjs(this.article.createdTime).format('YYYY-MM-DD')
     console.log(timeasd)
   },
   methods: {
     goToArticle(articleId) {
-      this.$emit('articleClick', articleId)
+      this.$router.push(`/article/${articleId}`)
     },
-    toList(tagId) {
-      console.log(tagId)
+    toList(status, id) {
+      this.$router.push(`/search/${status}/${id}`)
     }
   }
 }

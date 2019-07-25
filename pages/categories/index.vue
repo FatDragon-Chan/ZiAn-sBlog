@@ -1,33 +1,35 @@
 <template>
-  <div class="categories-wrap">
-    <p class="title">
-      分类
-    </p>
-    <div class="categories-container">
-      <template v-for="(item, index) in categoriesList">
-        <div
-          :key="index"
-          class="container-btn category-btn"
-          @click="goToArticleList('category', item.categoryId)"
-        >
-          {{ item.categoryName }}
-          <span class="category-btn-num">{{ item.categoryNum }}篇</span>
-        </div>
-      </template>
-    </div>
-    <p class="title">
-      标签
-    </p>
-    <div class="categories-container">
-      <template v-for="(item, index) in tagsList">
-        <div
-          :key="index"
-          class="container-btn tag-btn"
-          @click="goToArticleList('tag', item.tagId)"
-        >
-          {{ item.tagName }}
-        </div>
-      </template>
+  <div>
+    <div class="categories-wrap">
+      <p class="title">
+        分类
+      </p>
+      <div class="categories-container">
+        <template v-for="(item, index) in categoriesList">
+          <div
+            :key="index"
+            class="container-btn category-btn"
+            @click="goToArticleList(2, item.categoryId)"
+          >
+            {{ item.categoryName }}
+            <span class="category-btn-num">{{ item.categoryNum }}篇</span>
+          </div>
+        </template>
+      </div>
+      <p class="title">
+        标签
+      </p>
+      <div class="categories-container">
+        <template v-for="(item, index) in tagsList">
+          <div
+            :key="index"
+            class="container-btn tag-btn"
+            @click="goToArticleList(3, item.tagId)"
+          >
+            {{ item.tagName }}
+          </div>
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -102,13 +104,7 @@ export default {
   },
   methods: {
     goToArticleList(type, id) {
-      this.$router.push({
-        name: 'list',
-        query: {
-          type,
-          id: id
-        }
-      })
+      this.$router.push(`/search/${type}/${id}`)
     }
   }
 }
@@ -122,8 +118,6 @@ export default {
     text-align center
     margin-bottom 20px
     font-size 22px
-    @media (max-width: 768px)
-      font-size 18px
     color $color-main
   .categories-container
     margin-bottom 60px
@@ -156,6 +150,8 @@ export default {
       cursor pointer
       user-select none
       position relative
+      &:hover
+        color:$color-main
       &:after
         content: "";
         position: absolute;

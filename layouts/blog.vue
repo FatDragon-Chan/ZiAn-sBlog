@@ -97,4 +97,5 @@ html {
   width 1000px
   padding 0 10px
   margin 0 auto
+  min-height calc(100% - 90px - 120px)
 </style>
