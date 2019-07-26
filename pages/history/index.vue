@@ -1,38 +1,56 @@
 <template>
   <div>
-    <div class="history-wrap">
-      <el-timeline>
-        <el-timeline-item timestamp="2018/4/12" placement="top">
-          <el-card @click="goToDetail">
-            <h4>更新 Github 模板</h4>
-            <p>王小虎 提交于 2018/4/12 20:46</p>
-          </el-card>
-        </el-timeline-item>
-        <el-timeline-item timestamp="2018/4/3" placement="top">
-          <el-card>
-            <h4>更新 Github 模板</h4>
-            <p>王小虎 提交于 2018/4/3 20:46</p>
-          </el-card>
-        </el-timeline-item>
-        <el-timeline-item timestamp="2018/4/2" placement="top">
-          <el-card>
-            <h4>更新 Github 模板</h4>
-            <p>王小虎 提交于 2018/4/2 20:46</p>
-          </el-card>
-        </el-timeline-item>
-      </el-timeline>
-    </div>
+    <div class="history-wrap" />
   </div>
 </template>
 
 <script>
 export default {
   layout: 'blog',
+  components: {},
   data() {
-    return {}
+    return {
+      timeLineHistory: [
+        {
+          timestamp: '20180726',
+          title: '呀?归档的历史',
+          createTime: '20180726 12313',
+          author: '陈子安',
+          articleId: 11
+        },
+        {
+          timestamp: '20180726',
+          title: '呀?归档的历史',
+          createTime: '20180726 12313',
+          author: '陈子安',
+          articleId: 11
+        },
+        {
+          timestamp: '20180726',
+          title: '呀?归档的历史',
+          createTime: '20180726 12313',
+          author: '陈子安',
+          articleId: 11
+        },
+        {
+          timestamp: '20180726',
+          title: '呀?归档的历史',
+          createTime: '20180726 12313',
+          author: '陈子安',
+          articleId: 11
+        },
+        {
+          timestamp: '20180726',
+          title: '呀?归档的历史',
+          createTime: '20180726 12313',
+          author: '陈子安',
+          articleId: 11
+        }
+      ]
+    }
   },
   methods: {
-    goToDetail() {
+    goToDetail(id) {
       console.log('前往文章详情')
     }
   }
@@ -43,6 +61,7 @@ export default {
 .history-wrap
   padding 30px 10px
   animation: show .8s
+  font-size 20px
 
 @keyframes show {
   from {

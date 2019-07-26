@@ -9,7 +9,10 @@
       </p>
       <p>
         © 2019
-        <a class="beian-jump" href="http://www.beian.miit.gov.cn">
+        <!-- <a class="beian-jump" href="http://www.beian.miit.gov.cn">
+          粤ICP备19029744号
+        </a> -->
+        <a class="beian-jump" href="#">
           粤ICP备19029744号
         </a>
       </p>
