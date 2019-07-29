@@ -15,6 +15,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/style-resources": "^0.1.2",
+    "axios": "^0.19.0",
     "dayjs": "^1.8.15",
     "element-ui": "^2.4.11",
     "nprogress": "^0.2.0",
