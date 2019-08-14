@@ -30,13 +30,17 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/element-ui', { src: '@/plugins/loading', ssr: false }],
+  plugins: [
+    '@/plugins/element-ui',
+    { src: '@/plugins/loading', ssr: false },
+    '@/plugins/api.js'
+  ],
   /*
    ** Nuxt.js modules
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
+    // '@nuxtjs/axios',
     '@nuxtjs/eslint-module',
     '@nuxtjs/style-resources'
   ],
@@ -59,7 +63,7 @@ export default {
     extend(config, ctx) {}
   },
   server: {
-    port: 3000, // default: 3000
+    port: 6900, // default: 3000
     host: '0.0.0.0' // default: localhost
   }
 }

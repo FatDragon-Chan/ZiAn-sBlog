@@ -41,7 +41,15 @@ export default {
           createdTime: '1561619970000',
           watches: 5412
         }
-      ]
+      ],
+      info: []
+    }
+  },
+  async asyncData(context) {
+    const info = await context.app.$axios.POST('/blog/selective')
+    console.log(info)
+    return {
+      info
     }
   },
   methods: {
