@@ -9,8 +9,9 @@
 import { get, post } from './http'
 
 export default {
-  POST(link) {
-    return post(link)
+  // 分页查询文章
+  selectArticle(params) {
+    return post(`http://localhost:3000/blog/selective`, params)
   },
   GET(link) {
     return get(link)

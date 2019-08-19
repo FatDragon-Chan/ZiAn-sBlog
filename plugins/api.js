@@ -1,5 +1,7 @@
 import API from '@/api/index.js'
-export default ({ app }, inject) => {
+export default (context, inject) => {
   // Set the function directly on the context.app object
-  app.$axios = API
+  context.app.$axios = API
+
+  console.log(context)
 }
