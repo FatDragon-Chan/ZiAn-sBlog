@@ -1,8 +1,7 @@
 import Axios from 'axios'
-// import qs from 'qs' // 引入qs模块，用来序列化post类型的数据，后面会提到
+import qs from 'qs' // 引入qs模块，用来序列化post类型的数据，后面会提到
 import { baseUrl } from './env.js' // 引入axios
 const axios = Axios.create()
-
 const TOKEN = '7bf2b13020e1ed2278db4bba3f5e7a53102cbc37'
 
 // vuex
@@ -19,7 +18,7 @@ axios.defaults.headers.post['Content-Type'] =
 axios.interceptors.request.use(
   (config) => {
     if (config.method === 'post') {
-      // config.data = qs.stringify(config.data)
+      config.data = qs.stringify(config.data)
     }
     // eslint-disable-next-line no-unused-vars
     const URL = config.url.split(config.baseURL)
@@ -35,7 +34,6 @@ axios.interceptors.request.use(
 // 返回
 axios.interceptors.response.use(
   (res) => {
-    // console.log(res)
     // 拦截器配置
     // if (res.data.success) {
     //   Tool.toast(res.data.msg)

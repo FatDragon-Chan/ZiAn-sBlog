@@ -3,13 +3,15 @@
     <template v-for="(item, index) in articleList">
       <article-card :key="index" :article="item" @articleClick="goToArticle" />
     </template>
-    <div v-if="total" class="pagination">
-      <el-pagination
-        background
-        layout="prev, pager, next"
-        :total="total"
-        @current-change="pageChange"
-      />
+    <div v-if="!isLastPage" class="page-more">
+      查看更多
+    </div>
+    <div class="page-controls">
+      <a :href="`/${queryForm.page - 1}`">上一页</a>
+      <a v-if="!isLastPage" :href="`/${queryForm.page + 1}`">下一页</a>
+      <div v-else>
+        已经是最后一页
+      </div>
     </div>
   </div>
 </template>
@@ -26,13 +28,20 @@ export default {
     return {
       queryForm: {},
       articleList: [],
-      total: 0
+      total: 0,
+      isLastPage: false
     }
   },
   async asyncData(context) {
     const params = {
       page: 1,
       pageSize: 10
+    }
+    if (context.route.params.page) {
+      if (context.route.params.page === '1') {
+        return context.redirect('/')
+      }
+      params.page = parseInt(context.route.params.page)
     }
     const info = await context.app.$axios.selectArticle(params)
     return {
@@ -41,10 +50,10 @@ export default {
       queryForm: params
     }
   },
+  created() {
+    console.log(this.$route)
+  },
   methods: {
-    getData() {
-      console.log(this)
-    },
     goToArticle(articleId) {
       console.log(articleId)
       this.$router.push({
@@ -53,9 +62,6 @@ export default {
           id: articleId
         }
       })
-    },
-    pageChange(page) {
-      this.getData()
     }
   }
 }
@@ -66,7 +72,10 @@ export default {
   position: relative;
   padding: 30px 10px;
   min-height: 100px;
-  .pagination
+  .page-more
+    text-align center
+    cursor pointer
+  .page-controls
     display flex
     justify-content center
     align-items center

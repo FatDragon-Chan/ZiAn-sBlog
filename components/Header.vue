@@ -42,8 +42,7 @@ export default {
         // { name: '友链', icon: 'icon-icon_share', to: '/friends' },
         // { name: '更多', icon: 'icon-icon_category', to: '/more' },
         { name: '搜索', icon: 'icon-icon_search', to: '/search/1' }
-      ],
-      showMobileTabs: false
+      ]
     }
   },
   computed: {},

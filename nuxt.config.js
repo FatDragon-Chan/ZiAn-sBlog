@@ -17,7 +17,19 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   router: {
-    middleware: ['device']
+    middleware: ['device'],
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'index',
+        path: '/',
+        component: resolve(__dirname, 'pages/home/index.vue')
+      })
+      routes.push({
+        name: 'index',
+        path: '/:page',
+        component: resolve(__dirname, 'pages/home/index.vue')
+      })
+    }
   },
   /*
    ** Customize the progress-bar color
