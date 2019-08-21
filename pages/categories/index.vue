@@ -12,7 +12,7 @@
             @click="goToArticleList(2, item.categoryId)"
           >
             {{ item.categoryName }}
-            <span class="category-btn-num">{{ item.categoryNum }}篇</span>
+            <span class="category-btn-num">{{ item.articleNum }}篇</span>
           </div>
         </template>
       </div>
@@ -39,72 +39,24 @@ export default {
   layout: 'blog',
   data() {
     return {
-      categoriesList: [
-        {
-          categoryId: 1,
-          categoryName: '开发维护',
-          categoryNum: 123
-        },
-        {
-          categoryId: 2,
-          categoryName: 'Vue开发',
-          categoryNum: 114
-        },
-        {
-          categoryId: 3,
-          categoryName: '设计学习',
-          categoryNum: 11243
-        },
-        {
-          categoryId: 4,
-          categoryName: '设计',
-          categoryNum: 66
-        },
-        {
-          categoryId: 5,
-          categoryName: '默认分类',
-          categoryNum: 11235
-        }
-      ],
-      tagsList: [
-        {
-          tagId: 1,
-          tagName: '测试1'
-        },
-        {
-          tagId: 2,
-          tagName: '测试2'
-        },
-        {
-          tagId: 3,
-          tagName: '测试3'
-        },
-        {
-          tagId: 4,
-          tagName: '测试4'
-        },
-        {
-          tagId: 5,
-          tagName: '测试5'
-        },
-        {
-          tagId: 6,
-          tagName: '测试6'
-        },
-        {
-          tagId: 7,
-          tagName: '测试7'
-        },
-        {
-          tagId: 8,
-          tagName: '测试8'
-        }
-      ]
+      categoriesList: [],
+      tagsList: []
+    }
+  },
+  async asyncData(context) {
+    // const params = {
+    //   page: 1,
+    //   pageSize: 5
+    // }
+    const info = await context.app.$axios.getAllClassify({})
+    return {
+      categoriesList: info.data.categoriesList,
+      tagsList: info.data.tagsList
     }
   },
   methods: {
     goToArticleList(type, id) {
-      this.$router.push(`/search/${type}/${id}`)
+      this.$router.push(`/search/${type === 2 ? 'category' : 'tag'}/${id}`)
     }
   }
 }

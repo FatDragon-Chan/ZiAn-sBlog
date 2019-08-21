@@ -10,7 +10,7 @@
         The page you are looking for might have been removed had its name
         changed or is temporarily unavailable.
       </p>
-      <a href="/home">Back To Home</a>
+      <a href="/">Back To Home</a>
     </div>
   </div>
 </template>

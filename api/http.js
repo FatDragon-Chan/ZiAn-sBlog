@@ -34,6 +34,7 @@ axios.interceptors.request.use(
 // 返回
 axios.interceptors.response.use(
   (res) => {
+    console.log(res.data)
     // 拦截器配置
     // if (res.data.success) {
     //   Tool.toast(res.data.msg)

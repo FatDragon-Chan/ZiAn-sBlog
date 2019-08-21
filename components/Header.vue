@@ -1,20 +1,13 @@
 <template>
   <div class="m-header-wrap">
     <div class="m-header-navbar" :style="{ height: '90px' }">
-      <div
-        class="header-logo"
-        :style="{
-          'justify-content': 'space-between',
-          padding: '25px'
-        }"
-        @click="tapLogo"
-      >
+      <a href="http://www.chenzian.cn" target="_blank" class="header-logo">
         <div class="line" />
         <p class="blog-name">
           ChenZiAn
         </p>
         <div class="line" />
-      </div>
+      </a>
       <header-tab-view :tabs="tabs" @tab-click="selectTab" />
     </div>
   </div>
@@ -52,9 +45,6 @@ export default {
     selectTab(tab) {
       this.toggle()
       this.$router.push({ name: tab.to })
-    },
-    tapLogo() {
-      this.$router.push(`/home`)
     }
   }
 }
@@ -76,6 +66,8 @@ export default {
     transition: all .5s
     .header-logo
       height 100%
+      justify-content space-between
+      padding 25px
       box-sizing border-box
       font-size 20px
       font-weight 700

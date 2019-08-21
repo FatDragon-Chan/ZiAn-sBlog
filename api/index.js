@@ -13,7 +13,10 @@ export default {
   selectArticle(params) {
     return post(`http://localhost:3000/blog/selective`, params)
   },
-  GET(link) {
-    return get(link)
+  getAllClassify(params) {
+    return post(`http://localhost:3000/blog/getAllClassify`, params)
+  },
+  GET(links) {
+    return get(links)
   }
 }

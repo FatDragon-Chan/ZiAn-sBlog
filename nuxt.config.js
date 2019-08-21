@@ -22,13 +22,13 @@ export default {
       routes.push({
         name: 'index',
         path: '/',
-        component: resolve(__dirname, 'pages/home/index.vue')
+        component: resolve(__dirname, 'pages/home/_page.vue')
       })
-      routes.push({
-        name: 'index',
-        path: '/:page',
-        component: resolve(__dirname, 'pages/home/index.vue')
-      })
+      // routes.push({
+      //   name: 'index',
+      //   path: '/:page',
+      //   component: resolve(__dirname, 'pages/home/index.vue')
+      // })
     }
   },
   /*
