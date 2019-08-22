@@ -13,16 +13,13 @@
 </template>
 
 <script>
+import { tabs } from '~/data/enum.js'
 export default {
   name: 'HeaderTabView',
-  props: {
-    tabs: {
-      default: () => [],
-      type: Array
-    }
-  },
   data() {
-    return {}
+    return {
+      tabs
+    }
   },
   methods: {
     selectTab(tab) {

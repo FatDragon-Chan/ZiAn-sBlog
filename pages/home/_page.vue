@@ -7,7 +7,10 @@
       查看更多
     </div>
     <div class="page-controls">
-      <a v-if="queryForm.page > 1" :href="`/home/${queryForm.page - 1}`">
+      <a
+        v-if="queryForm.page > 1"
+        :href="`/home/${this.$route.params.page - 1}`"
+      >
         上一页
       </a>
       <div v-else>
@@ -58,8 +61,7 @@ export default {
     }
   },
   created() {
-    const time = new Date() * 1 - new Date('2011-03-20') * 1
-    console.log(parseInt(time / 86400000))
+    console.log(this.$route.params.page)
   },
   methods: {
     getMore() {

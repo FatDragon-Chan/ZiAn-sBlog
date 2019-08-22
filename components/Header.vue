@@ -8,44 +8,17 @@
         </p>
         <div class="line" />
       </a>
-      <header-tab-view :tabs="tabs" @tab-click="selectTab" />
+      <header-tab-view />
     </div>
   </div>
 </template>
 
 <script>
 import headerTabView from './headerTabView'
-// import {
-// mapActions,
-// mapGetters
-// mapMutations
-// } from 'vuex'
 export default {
   name: 'Home',
   components: {
     headerTabView
-  },
-  data() {
-    return {
-      tabs: [
-        { name: '首页', icon: 'icon-icon_home', to: '/home' },
-        { name: '分类/标签', icon: 'icon-icon_tag', to: '/categories' },
-        { name: '归档', icon: 'icon-icon_clock', to: '/history' },
-        { name: '关于', icon: 'icon-icon_user', to: '/chenzian' },
-        // { name: '友链', icon: 'icon-icon_share', to: '/friends' },
-        // { name: '更多', icon: 'icon-icon_category', to: '/more' },
-        { name: '搜索', icon: 'icon-icon_search', to: '/search/1' }
-      ]
-    }
-  },
-  computed: {},
-  watch: {},
-  created() {},
-  methods: {
-    selectTab(tab) {
-      this.toggle()
-      this.$router.push({ name: tab.to })
-    }
   }
 }
 </script>

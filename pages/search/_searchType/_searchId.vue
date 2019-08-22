@@ -1,22 +1,28 @@
 <template>
   <div>
     <div class="list-wrap">
-      <div v-if="queryForm.searchType === '1'" class="list-search-bar">
+      <div
+        v-if="this.$route.params.searchType === 'keyword'"
+        class="list-search-bar"
+      >
         <el-input
           v-model="queryForm.keyword"
           clearable
           placeholder="请输入搜索内容"
           size="small"
-          @keyup.enter.native="getData"
+          @keyup.enter.native="getArticle"
         />
       </div>
-      <div v-if="articleList.length !== 0" class="article-list">
-        <template v-for="(item, index) in articleList">
+      <div v-if="articleForm.list.length !== 0" class="article-list">
+        <template v-for="(item, index) in articleForm.list">
           <article-list-card :key="index" class="article" :article="item" />
         </template>
-      </div>
-      <div v-if="total" class="pagination">
-        <el-pagination background layout="prev, pager, next" :total="total" />
+        <div v-if="!articleForm.isLastPage" class="page-more" @click="getMore">
+          查看更多
+        </div>
+        <div v-else class="page-more">
+          已经到底啦
+        </div>
       </div>
     </div>
   </div>
@@ -32,50 +38,70 @@ export default {
   data() {
     return {
       total: 0,
-      articleList: [],
+      articleForm: {
+        list: []
+      },
       queryForm: {
         page: 1,
         pageSize: 10,
-        keyword: '',
-        searchType: this.$route.params.searchType, // 1-搜索 2-分类 3-标签
-        searchId: this.$route.params.searchId // 在searchType == 2/3时分别作categroyId/tagId
+        keyword: ''
       }
     }
   },
-  created() {
-    if (this.queryForm.searchType !== '1') {
-      this.getData()
+  async asyncData(context) {
+    const query = context.route.params
+    console.log(query.searchType)
+    if (query.searchType !== 'keyword') {
+      const params = {
+        page: 1,
+        pageSize: 10,
+        categoryId: query.searchType === 'category' ? query.searchId * 1 : '',
+        tagId: query.searchType === 'tag' ? query.searchId * 1 : ''
+      }
+      console.log(params)
+      const info = await context.app.$axios.selectArticle(params)
+      return {
+        articleForm: info.data,
+        queryForm: params
+      }
+    } else {
+      return { articleForm: { list: [] } }
     }
   },
+  created() {},
   methods: {
-    getData() {
-      this.total = 2
-      this.articleList = [
-        {
-          articleId: 1,
-          articleTitle: '我是第一篇文章',
-          articleMainMap:
-            'https://qiniu.chenfeng1995.cn/young-woman-using-phone-to-take-a-picture-860x573.jpg',
-          tags: [{ name: '标签1', tagId: 111 }, { name: '标签2', tagId: 112 }],
-          articleDesc: '我是第一篇文章的副标题',
-          categorieId: 11,
-          categorieName: '文档类别',
-          creationTime: '1561619970000',
-          watches: 13
-        },
-        {
-          articleId: 2,
-          articleTitle: '我是第二篇文章',
-          articleMainMap:
-            'https://qiniu.chenfeng1995.cn/47812355881_f74329ec64_o-860x1147.jpg',
-          tags: [{ name: '标签1', tagId: 111 }, { name: '标签2', tagId: 112 }],
-          articleDesc: '我是第二篇文章的副标题',
-          categorieId: 12,
-          categorieName: '分类名称',
-          creationTime: '1561619970000',
-          watches: 5412
-        }
-      ]
+    getArticle() {
+      this.$axios
+        .selectArticle(this.queryForm)
+        .then((res) => {
+          console.log(res)
+          if (res.responseCode === '0000') {
+            this.articleForm = res.data
+          } else {
+            this.$message(res.responseMsg)
+          }
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    },
+    getMore() {
+      this.queryForm.page++
+      this.$axios
+        .selectArticle(this.queryForm)
+        .then((res) => {
+          if (res.responseCode === '0000') {
+            const list = this.articleForm.list
+            list.push(...res.data.list)
+            res.data.list = list
+            this.articleForm = res.data
+          } else {
+            this.$message(res.responseMsg)
+          }
+        })
+        .catch((err) => {
+          console.error(err)
+        })
     }
   }
 }
@@ -87,6 +113,9 @@ export default {
   animation: show .8s
   .article-list
     padding 10px 100px
+    .page-more
+      text-align center
+      cursor pointer
     .article
       margin-bottom 20px
       &:last-child
