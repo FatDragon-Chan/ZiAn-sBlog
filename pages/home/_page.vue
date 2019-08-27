@@ -60,9 +60,7 @@ export default {
       queryForm: params
     }
   },
-  created() {
-    console.log(this.$route.params.page)
-  },
+  created() {},
   methods: {
     getMore() {
       this.queryForm.page++

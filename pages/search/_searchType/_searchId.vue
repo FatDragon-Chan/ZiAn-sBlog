@@ -10,6 +10,7 @@
           clearable
           placeholder="请输入搜索内容"
           size="small"
+          @change="getArticle"
           @keyup.enter.native="getArticle"
         />
       </div>
