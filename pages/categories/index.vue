@@ -12,7 +12,7 @@
             @click="goToArticleList(2, item.categoryId)"
           >
             {{ item.categoryName }}
-            <span class="category-btn-num">{{ item.articleNum }}篇</span>
+            <span class="category-btn-num">{{ item.counts }}篇</span>
           </div>
         </template>
       </div>

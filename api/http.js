@@ -56,7 +56,7 @@ axios.interceptors.response.use(
     // }
     // Tool.close()
     // return res // 全部数据
-    return res.data.result // data数据
+    return res.data // data数据
   },
   (error) => {
     // 请求失败
