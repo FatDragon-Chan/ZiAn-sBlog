@@ -34,7 +34,8 @@ axios.interceptors.request.use(
     }
     config.headers = {
       // 'Content-Type': 'application/x-www/form/urlencoded;charset=utf-8'
-      'Content-Type': 'application/json;charset=utf-8'
+      // 'Content-Type': 'application/json;charset=UTF-8'
+      'Content-Type': 'text/plain;charset=UTF-8'
     }
     return config
   },
