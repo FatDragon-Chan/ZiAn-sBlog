@@ -104,8 +104,6 @@ export default {
       color $color-white
       padding 10px
       font-size 24px
-      @media (max-width: 768px)
-        font-size: 18px
       span
         position: relative
         cursor: pointer
