@@ -1,7 +1,7 @@
 import Axios from 'axios'
 import qs from 'qs' // 引入qs模块，用来序列化post类型的数据，后面会提到
 import { sign } from '../utils/sign'
-import { baseUrl } from './env.js' // 引入axios
+import { baseUrl } from './env.js' // 引入axios配置
 const axios = Axios.create()
 const TOKEN = '7bf2b13020e1ed2278db4bba3f5e7a53102cbc37'
 

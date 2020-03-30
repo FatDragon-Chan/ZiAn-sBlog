@@ -10,8 +10,8 @@
           clearable
           placeholder="请输入搜索内容"
           size="small"
-          @change="getArticle"
           @keyup.enter.native="getArticle"
+          @clear="reset"
         />
       </div>
       <div v-if="articleForm.list.length !== 0" class="article-list">
@@ -24,6 +24,12 @@
         <div v-else class="page-more">
           已经到底啦
         </div>
+      </div>
+      <div
+        v-if="articleForm.list.length === 0 && hasNoResult"
+        class="no-result"
+      >
+        未搜索到相关内容
       </div>
     </div>
   </div>
@@ -40,8 +46,10 @@ export default {
     return {
       total: 0,
       articleForm: {
-        list: []
+        list: [],
+        isLastPage: false
       },
+      hasNoResult: false,
       queryForm: {
         page: 1,
         pageSize: 10,
@@ -59,7 +67,6 @@ export default {
         categoryId: query.searchType === 'category' ? query.searchId * 1 : '',
         tagId: query.searchType === 'tag' ? query.searchId * 1 : ''
       }
-      console.log(params)
       const info = await context.app.$axios.selectArticle(params)
       return {
         articleForm: info.data,
@@ -75,11 +82,13 @@ export default {
       this.$axios
         .selectArticle(this.queryForm)
         .then((res) => {
-          console.log(res)
-          if (res.responseCode === '0000') {
+          if (res.resCode === '0000') {
             this.articleForm = res.data
+            if (!res.data.total) {
+              this.hasNoResult = true
+            }
           } else {
-            this.$message(res.responseMsg)
+            this.$message(res.msg)
           }
         })
         .catch((err) => {
@@ -91,18 +100,26 @@ export default {
       this.$axios
         .selectArticle(this.queryForm)
         .then((res) => {
-          if (res.responseCode === '0000') {
+          if (res.resCode === '0000') {
             const list = this.articleForm.list
             list.push(...res.data.list)
             res.data.list = list
             this.articleForm = res.data
           } else {
-            this.$message(res.responseMsg)
+            this.$message(res.msg)
           }
         })
         .catch((err) => {
           console.error(err)
         })
+    },
+    reset() {
+      this.hasNoResult = false
+      this.total = 0
+      this.articleForm = {
+        list: [],
+        isLastPage: false
+      }
     }
   }
 }
@@ -131,7 +148,8 @@ export default {
     justify-content center
     align-items center
     padding 10px 100px
-
+  .no-result
+    padding 10px 100px
 @keyframes show {
   from {
     margin-top: -10px;

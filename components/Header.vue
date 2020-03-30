@@ -4,7 +4,7 @@
       <a href="http://www.chenzian.cn" target="_blank" class="header-logo">
         <div class="line" />
         <p class="blog-name">
-          ChenZiAn
+          Zian Chen
         </p>
         <div class="line" />
       </a>

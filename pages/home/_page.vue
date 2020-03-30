@@ -6,11 +6,8 @@
     <div v-if="!articleForm.isLastPage" class="page-more" @click="getMore">
       查看更多
     </div>
-    <div class="page-controls">
-      <a
-        v-if="queryForm.page > 1"
-        :href="`/home/${this.$route.params.page - 1}`"
-      >
+    <div v-if="articleForm.pageSize !== 5" class="page-controls">
+      <a v-if="queryForm.page > 1" :href="`/home/${queryForm.page - 1}`">
         上一页
       </a>
       <div v-else>
@@ -43,7 +40,8 @@ export default {
   async asyncData(context) {
     const params = {
       page: 1,
-      pageSize: 5
+      pageSize: 5,
+      status: 1
     }
     if (context.route.params.page) {
       if (context.route.params.page <= 1) {
@@ -68,7 +66,7 @@ export default {
         .selectArticle(this.queryForm)
         .then((res) => {
           console.log(res)
-          if (res.responseCode === '0000') {
+          if (res.resCode === '0000') {
             this.articleForm.list.push(...res.data.list)
             this.articleForm.isLastPage = res.data.isLastPage
           } else {

@@ -47,7 +47,7 @@ typings/
 # Optional eslint cache
 .eslintcache
 
-# Optional REPL history
+# Optional REPL archives
 .node_repl_history
 
 # Output of 'npm pack'

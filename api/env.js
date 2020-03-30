@@ -13,11 +13,12 @@ let routerMode
 const imgBaseUrl = 'https://fuss10.elemecdn.com'
 
 if (process.env.NODE_ENV === 'development') {
-  baseUrl = 'localhost'
+  baseUrl = 'http://localhost:3000'
   routerMode = 'history'
 } else {
   baseUrl = 'https://api.github.com/'
   routerMode = 'history'
 }
+console.log(process.env.NODE_ENV, baseUrl)
 
 export { baseUrl, routerMode, imgBaseUrl }

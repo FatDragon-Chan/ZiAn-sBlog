@@ -1,15 +1,13 @@
 <template>
-  <div class="article-list-card">
+  <div class="article-list-card" @click="goToArticle(article.articleId)">
     <div class="article-title">
-      <span @click="goToArticle(article.articleId)">{{
-        article.articleTitle
-      }}</span>
+      <span>{{ article.articleTitle }}</span>
     </div>
     <div class="article-info">
       发表于 2019年06月27日 •
-      <span class="article-category" @click="toList(2, article.categorieId)">
-        {{ article.categorieName }}
-      </span>
+      <!--      <span class="article-category" @click="toList(2, article.categorieId)">-->
+      <!--        {{ article.categorieName }}-->
+      <!--      </span>-->
       •
       <span class="article-watches">{{ article.watches }}</span>
       人围观
@@ -56,6 +54,7 @@ export default {
 
 <style lang="stylus" scoped>
 .article-list-card
+  cursor pointer;
   line-height 1.2
   padding 20px
   @media (max-width: 768px)

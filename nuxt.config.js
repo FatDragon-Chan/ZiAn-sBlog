@@ -4,7 +4,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'ChenZiAn',
+    title: 'Zem Chan',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -23,6 +23,8 @@ export default {
         name: 'index',
         path: '/',
         component: resolve(__dirname, 'pages/home/_page.vue')
+        // 维护使用
+        // component: resolve(__dirname, 'pages/error/index.vue')
       })
       // routes.push({
       //   name: 'index',
@@ -76,6 +78,6 @@ export default {
   },
   server: {
     port: 6900, // default: 3000
-    host: '0.0.0.0' // default: localhost
+    host: 'localhost' // default: localhost
   }
 }

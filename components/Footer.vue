@@ -8,8 +8,12 @@
         </a>
       </p>
       <p>
-        © 2019
-        <a class="beian-jump" href="http://www.beian.miit.gov.cn">
+        © 2020
+        <a
+          class="beian-jump"
+          target="_blank"
+          href="http://www.beian.miit.gov.cn"
+        >
           粤ICP备19029744号
         </a>
       </p>
@@ -46,7 +50,11 @@ export default {}
     .beian-jump
       text-decoration none
       color $color-grey
-      cursor default
+      cursor pointer
+      :visited
+        color $color-grey
+      &:hover
+        color gold
 a:visited
   color $color-grey
   &:hover
