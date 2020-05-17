@@ -5,22 +5,16 @@
         <el-timeline>
           <template v-for="item in timeLineHistory">
             <el-timeline-item
-              :timestamp="item.createTime"
               :key="item.articleId"
+              :timestamp="item.createTime"
               placement="top"
             >
               <el-card class="history-wrap" @click="goToDetail">
-                <h4>{{ item.title }}</h4>
-                <p>王小虎 提交于 2018/4/12 20:46</p>
+                <h4>{{ item.articleTitle }}</h4>
+                <p>{{ item.articleDesc }}</p>
               </el-card>
             </el-timeline-item>
           </template>
-          <el-timeline-item timestamp="2018/4/12" placement="top">
-            <el-card class="history-wrap" @click="goToDetail">
-              <h4>更新 Github 模板</h4>
-              <p>王小虎 提交于 2018/4/12 20:46</p>
-            </el-card>
-          </el-timeline-item>
         </el-timeline>
       </div>
     </div>
@@ -28,6 +22,7 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
 export default {
   layout: 'blog',
   components: {},
@@ -69,7 +64,27 @@ export default {
           author: '陈子安',
           articleId: 15
         }
-      ]
+      ],
+      queryForm: {}
+    }
+  },
+  async asyncData(context) {
+    const params = {
+      page: 1,
+      pageSize: 10,
+      status: 1
+    }
+    const info = await context.app.$axios.selectArticle(params)
+    if (info.data.isLastPage) {
+      params.page = info.data.lastPage
+    }
+    info.data.list.map((item) => {
+      item.createTime = dayjs(item.createTime).format('YYYY-MM-DD')
+    })
+    return {
+      timeLineHistory: info.data.list,
+      resData: info.data,
+      queryForm: params
     }
   },
   methods: {

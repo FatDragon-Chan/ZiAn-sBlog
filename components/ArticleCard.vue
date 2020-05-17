@@ -12,9 +12,12 @@
     </div>
     <div class="article-content">
       <div class="article-info">
-        发表于 2019年06月27日 •
-        <span class="article-category" @click="toList(2, article.categorieId)">
-          {{ article.categorieName }}
+        发表于 {{ article.createTime }} •
+        <span
+          class="article-category"
+          @click="toList('category', article.categoryId)"
+        >
+          {{ article.categoryName }}
         </span>
         •
         <span class="article-watches">{{ article.watches }}</span>
@@ -28,7 +31,7 @@
           v-for="(item, index) in article.tags"
           :key="index"
           class="article-tag"
-          @click="toList(3, item.tagId)"
+          @click="toList('tag', item.tagId)"
         >
           <i class="iconfont icon-icon_tag" />
           {{ item.name }}
@@ -55,8 +58,9 @@ export default {
     return {}
   },
   created() {
-    const timeasd = dayjs(this.article.createdTime).format('YYYY-MM-DD')
-    console.log(timeasd)
+    this.article.createTime = dayjs(this.article.createTime).format(
+      'YYYY-MM-DD'
+    )
   },
   methods: {
     goToArticle(articleId) {

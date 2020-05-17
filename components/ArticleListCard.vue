@@ -4,10 +4,10 @@
       <span>{{ article.articleTitle }}</span>
     </div>
     <div class="article-info">
-      发表于 2019年06月27日 •
-      <!--      <span class="article-category" @click="toList(2, article.categorieId)">-->
-      <!--        {{ article.categorieName }}-->
-      <!--      </span>-->
+      发表于 {{ article.createTime }} •
+      <span class="article-category" @click="toList(2, article.categoryId)">
+        {{ article.categoryName }}
+      </span>
       •
       <span class="article-watches">{{ article.watches }}</span>
       人围观
@@ -20,7 +20,7 @@
         v-for="(item, index) in article.tags"
         :key="index"
         class="article-tag"
-        @click="toList(3, item.tagId)"
+        @click="toList('tag', item.tagId)"
       >
         <i class="iconfont icon-icon_tag" />
         {{ item.name }}
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
 export default {
   name: 'ArticleListCard',
   props: {
@@ -40,6 +41,11 @@ export default {
   },
   data() {
     return {}
+  },
+  created() {
+    this.article.createTime = dayjs(this.article.createTime).format(
+      'YYYY-MM-DD'
+    )
   },
   methods: {
     toList(status, id) {

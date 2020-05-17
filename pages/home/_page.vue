@@ -93,6 +93,23 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@keyframes fadeIn {
+  0% {
+        opacity:0;
+     }
+    25% {
+        opacity:.25;
+    }
+    50% {
+        opacity: .5;
+    }
+    75% {
+        opacity: .75;
+    }
+    100% {
+      opacity: 1;
+    }
+}
 #home
   position: relative;
   padding: 30px 10px;
@@ -100,6 +117,10 @@ export default {
   .page-more
     text-align center
     cursor pointer
+    padding 10px 0
+    &:hover
+      animation fadeIn 1s
+      box-shadow 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
   .page-controls
     display flex
     justify-content space-around
