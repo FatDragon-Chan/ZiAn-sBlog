@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import qs from 'qs' // 引入qs模块，用来序列化post类型的数据，后面会提到
-import { sign } from '../utils/sign'
+// import { sign } from '../utils/sign'
 import { baseUrl } from './env.js' // 引入axios配置
 const axios = Axios.create()
 const TOKEN = '7bf2b13020e1ed2278db4bba3f5e7a53102cbc37'
@@ -18,24 +18,24 @@ axios.defaults.headers.post['Content-Type'] =
 // 请求
 axios.interceptors.request.use(
   (config) => {
-    config.data = qs.parse(config.data)
-    // 定义生成签名后的data
-    const data = sign(config.data)
+    // config.data = qs.parse(config.data)
+    // // 定义生成签名后的data
+    // const data = sign(config.data)
     // 判断请求是否为get方式并格式化参数设置
     // if (config.method === 'get') {
     //   console.log(config.headers.isLoad)
     // }
     if (config.method === 'get' && config.headers.isLoad) {
-      config.url += '?' + qs.stringify(data)
+      config.url += '?' + qs.stringify(config.data)
       window.location.href = config.url
       return
     } else {
-      config.data = JSON.stringify(data)
+      config.data = JSON.stringify(config.data)
     }
     config.headers = {
       // 'Content-Type': 'application/x-www/form/urlencoded;charset=utf-8'
-      // 'Content-Type': 'application/json;charset=UTF-8'
-      'Content-Type': 'text/plain;charset=UTF-8'
+      'Content-Type': 'application/json;charset=UTF-8'
+      // 'Content-Type': 'text/plain;charset=UTF-8'
     }
     return config
   },

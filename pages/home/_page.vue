@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <template v-for="(item, index) in articleForm.list">
+    <template v-for="(item, index) in articleForm">
       <article-card :key="index" :article="item" @articleClick="goToArticle" />
     </template>
     <div v-if="!articleForm.isLastPage" class="page-more" @click="getMore">
@@ -54,7 +54,7 @@ export default {
       params.page = info.data.lastPage
     }
     return {
-      articleForm: info.data,
+      articleForm: info.data.blogData,
       queryForm: params
     }
   },
@@ -67,7 +67,7 @@ export default {
         .then((res) => {
           console.log(res)
           if (res.resCode === '0000') {
-            this.articleForm.list.push(...res.data.list)
+            this.articleForm.push(...res.data.blogData)
             this.articleForm.isLastPage = res.data.isLastPage
           } else {
             this.queryForm.page--
