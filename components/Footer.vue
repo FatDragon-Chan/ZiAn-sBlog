@@ -3,7 +3,11 @@
     <div class="m-footer-view">
       <p>
         HomeBy
-        <a target="_blank" href="https://github.com/ChenZiAn1995">
+        <a
+          class="beian-jump"
+          target="_blank"
+          href="https://github.com/ChenZiAn1995"
+        >
           @ChenZiAn
         </a>
       </p>

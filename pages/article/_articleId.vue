@@ -3,7 +3,7 @@
     <div class="article-wrap">
       <div class="article-message">
         <div class="article-title">
-          {{ articleData.articleTitle }}
+          {{ articleData.artTitle }}
         </div>
         <div class="article-info">
           <i class="el-icon-date" />
@@ -12,10 +12,13 @@
           <a href="">游戏开发</a>
           {{ ` • ` }}
           <i class="el-icon-view" />
-          {{ ` ${articleData.watches} 人围观` }}
+          {{ ` ${articleData.artVisited} 人围观` }}
         </div>
         <div class="article-desc">
-          {{ articleData.articleDesc }}
+          {{ articleData.artDesc }}
+        </div>
+        <div class="article-content">
+          {{ articleData.artContent }}
         </div>
       </div>
     </div>
@@ -34,9 +37,12 @@ export default {
   async asyncData(context) {
     // await console.log(context.route.params.articleId)
     const params = {
-      articleId: context.route.params.articleId
+      artId: context.route.params.articleId
     }
-    const info = await context.app.$axios.POST('/api/blog/detail', params)
+    const info = await context.app.$axios.POST(
+      '/api/blog/getArticleDetail',
+      params
+    )
     info.data.createTime = dayjs(info.data.createTime).format('YYYY-MM-DD')
     return {
       articleData: info.data

@@ -5,13 +5,13 @@
         分类
       </p>
       <div class="categories-container">
-        <template v-for="(item, index) in categoriesList">
+        <template v-for="(item, index) in categoryData">
           <div
             :key="index"
             class="container-btn category-btn"
-            @click="goToArticleList(2, item.categoryId)"
+            @click="goToArticleList(2, item.id)"
           >
-            {{ item.categoryName }}
+            {{ item.catName }}
             <span class="category-btn-num">{{ item.counts }}篇</span>
           </div>
         </template>
@@ -20,7 +20,7 @@
         标签
       </p>
       <div class="categories-container">
-        <template v-for="(item, index) in tagsList">
+        <template v-for="(item, index) in tagData">
           <div
             :key="index"
             class="container-btn tag-btn"
@@ -50,8 +50,8 @@ export default {
     // }
     const info = await context.app.$axios.getAllClassify({})
     return {
-      categoriesList: info.data.categoriesList,
-      tagsList: info.data.tagsList
+      categoryData: info.data.categoryData,
+      tagData: info.data.tagData
     }
   },
   methods: {

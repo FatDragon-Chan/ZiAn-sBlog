@@ -17,7 +17,10 @@ export default {
   },
   // 获取
   getAllClassify(params) {
-    return post(`http://localhost:7001/api/blog/getAllClassify`, params)
+    return post(`http://localhost:7001/api/blog/getAllClassify`, {
+      select: 'all',
+      type: 0
+    })
   },
   GET(links) {
     return get(links)

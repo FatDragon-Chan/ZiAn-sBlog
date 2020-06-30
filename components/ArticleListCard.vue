@@ -1,29 +1,29 @@
 <template>
-  <div class="article-list-card" @click="goToArticle(article.articleId)">
+  <div class="article-list-card" @click="goToArticle(article.id)">
     <div class="article-title">
-      <span>{{ article.articleTitle }}</span>
+      <span>{{ article.artTitle }}</span>
     </div>
     <div class="article-info">
       发表于 {{ article.createTime }} •
-      <span class="article-category" @click="toList(2, article.categoryId)">
-        {{ article.categoryName }}
+      <span class="article-category" @click="toList(2, article.catId)">
+        {{ article.catName }}
       </span>
       •
-      <span class="article-watches">{{ article.watches }}</span>
+      <span class="article-watches">{{ article.artVisited }}</span>
       人围观
     </div>
     <div class="article-Desc">
-      {{ article.articleDesc }}
+      {{ article.artDesc }}
     </div>
     <div class="article-tagsBox">
       <div
-        v-for="(item, index) in article.tags"
+        v-for="(item, index) in article.tagIds.split(',')"
         :key="index"
         class="article-tag"
-        @click="toList('tag', item.tagId)"
+        @click="toList('tag', item)"
       >
-        <i class="iconfont icon-icon_tag" />
-        {{ item.name }}
+        <!--<i class="iconfont icon-icon_tag" />-->
+        {{ item }}
       </div>
     </div>
   </div>
@@ -51,8 +51,8 @@ export default {
     toList(status, id) {
       this.$router.push(`/search/${status}/${id}`)
     },
-    goToArticle(articleId) {
-      this.$router.push(`/article/${articleId}`)
+    goToArticle(id) {
+      this.$router.push(`/article/${id}`)
     }
   }
 }

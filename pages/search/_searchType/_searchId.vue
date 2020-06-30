@@ -14,8 +14,8 @@
           @clear="reset"
         />
       </div>
-      <div v-if="articleForm.list.length !== 0" class="article-list">
-        <template v-for="(item, index) in articleForm.list">
+      <div v-if="articleForm.blogData.length !== 0" class="article-list">
+        <template v-for="(item, index) in articleForm.blogData">
           <article-list-card :key="index" class="article" :article="item" />
         </template>
         <div v-if="!articleForm.isLastPage" class="page-more" @click="getMore">
@@ -26,7 +26,7 @@
         </div>
       </div>
       <div
-        v-if="articleForm.list.length === 0 && hasNoResult"
+        v-if="articleForm.blogData.length === 0 && hasNoResult"
         class="no-result"
       >
         未搜索到相关内容
@@ -64,7 +64,7 @@ export default {
       const params = {
         page: 1,
         pageSize: 10,
-        categoryId: query.searchType === 'category' ? query.searchId * 1 : '',
+        catId: query.searchType === 'category' ? query.searchId * 1 : '',
         tagId: query.searchType === 'tag' ? query.searchId * 1 : ''
       }
       const info = await context.app.$axios.selectArticle(params)
@@ -73,7 +73,7 @@ export default {
         queryForm: params
       }
     } else {
-      return { articleForm: { list: [] } }
+      return { articleForm: { blogData: [] } }
     }
   },
   created() {},

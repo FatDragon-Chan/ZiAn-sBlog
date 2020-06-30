@@ -2,12 +2,10 @@
   <div class="article-card-wrap">
     <div
       class="article-cover"
-      :style="{ backgroundImage: 'url(' + article.articleMainMap + ')' }"
+      :style="{ backgroundImage: 'url(' + article.artCover + ')' }"
     >
       <div class="article-title">
-        <span @click="goToArticle(article.articleId)">{{
-          article.articleTitle
-        }}</span>
+        <span @click="goToArticle(article.id)">{{ article.artTitle }}</span>
       </div>
     </div>
     <div class="article-content">
@@ -17,27 +15,27 @@
           class="article-category"
           @click="toList('category', article.categoryId)"
         >
-          {{ article.categoryName }}
+          {{ article.catName }}
         </span>
         •
-        <span class="article-watches">{{ article.watches }}</span>
+        <span class="article-watches">{{ article.artVisited }}</span>
         人围观
       </div>
       <div class="article-Desc">
-        {{ article.articleDesc }}
+        {{ article.artDesc }}
       </div>
       <div class="article-tagsBox">
         <div
-          v-for="(item, index) in article.tags"
+          v-for="(item, index) in article.tagIds.split(',')"
           :key="index"
           class="article-tag"
           @click="toList('tag', item.tagId)"
         >
-          <i class="iconfont icon-icon_tag" />
-          {{ item.name }}
+          <!--<i class="iconfont icon-icon_tag" />-->
+          {{ item }}
         </div>
       </div>
-      <div class="article-readMore" @click="goToArticle(article.articleId)">
+      <div class="article-readMore" @click="goToArticle(article.id)">
         阅读全文
       </div>
     </div>
@@ -63,8 +61,8 @@ export default {
     )
   },
   methods: {
-    goToArticle(articleId) {
-      this.$router.push(`/article/${articleId}`)
+    goToArticle(id) {
+      this.$router.push(`/article/${id}`)
     },
     toList(status, id) {
       this.$router.push(`/search/${status}/${id}`)
