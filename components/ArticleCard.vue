@@ -13,7 +13,7 @@
         发表于 {{ article.createTime }} •
         <span
           class="article-category"
-          @click="toList('category', article.categoryId)"
+          @click="toList('category', article.catId)"
         >
           {{ article.catName }}
         </span>

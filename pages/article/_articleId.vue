@@ -9,7 +9,12 @@
           <i class="el-icon-date" />
           {{ ` 发表于 ${articleData.createTime} • ` }}
           <i class="el-icon-folder" />
-          <a href="">游戏开发</a>
+          <span
+            style="cursor: pointer"
+            @click="enterSearch('category', articleData.catId)"
+          >
+            {{ articleData.catName }}
+          </span>
           {{ ` • ` }}
           <i class="el-icon-view" />
           {{ ` ${articleData.artVisited} 人围观` }}
@@ -17,9 +22,10 @@
         <div class="article-desc">
           {{ articleData.artDesc }}
         </div>
-        <div class="article-content">
-          {{ articleData.artContent }}
-        </div>
+        <div
+          class="article-content markdown-body md"
+          v-html="articleData.artContent"
+        />
       </div>
     </div>
   </div>
@@ -27,6 +33,7 @@
 
 <script>
 import dayjs from 'dayjs'
+import marked from '@/utils/highlight'
 export default {
   layout: 'blog',
   data() {
@@ -43,13 +50,17 @@ export default {
       '/api/blog/getArticleDetail',
       params
     )
+    // 处理富文本文字
+    info.data.artContent = marked(info.data.artContent)
     info.data.createTime = dayjs(info.data.createTime).format('YYYY-MM-DD')
     return {
       articleData: info.data
     }
   },
   methods: {
-    getArticle() {}
+    enterSearch(status, id) {
+      this.$router.push(`/search/${status}/${id}`)
+    }
   }
 }
 </script>
@@ -74,4 +85,6 @@ export default {
         font-size 14px
         padding-bottom 14px
         color #999999
+      .article-content
+        text-align left
 </style>
