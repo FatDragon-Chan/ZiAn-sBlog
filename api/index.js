@@ -13,11 +13,11 @@ export default {
   selectArticle(params) {
     if (!params.status) params.status = 0
     console.log(params)
-    return post(`http://localhost:7001/api/blog/selective`, params)
+    return post('http://localhost:7001/api/blog/selective', params)
   },
   // 获取
   getAllClassify(params) {
-    return post(`http://localhost:7001/api/blog/getAllClassify`, {
+    return post('http://localhost:7001/api/blog/getAllClassify', {
       select: 'all',
       type: 0
     })
